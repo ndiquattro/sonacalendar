@@ -1,0 +1,11 @@
+sona_credit:
+  user: 'cooldude'
+  pass: 'c00ldud3'
+  url: 'https://college.sona-systems.com/exp_admin_slots.aspx?p_show=U&experiment_id=199'
+  calid: '7648930276mfkdsa@group.calendar.google.com'
+
+sona_paid:
+  user: 'cooldude'
+  pass: 'p4idc00ldud3'
+  url: 'https://collegepaid.sona-systems.com/exp_admin_slots.aspx?p_show=U&experiment_id=68'
+  calid: '7648930276mfkdsa@group.calendar.google.com'
