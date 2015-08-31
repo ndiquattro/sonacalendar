@@ -1,3 +1,10 @@
+# Secrets
+config.yaml
+log.txt
+err.txt
+*.json
+vpython/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
