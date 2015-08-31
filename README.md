@@ -9,3 +9,6 @@ Scrape upcoming timeslots from Sona and add slot info to a google calendar
 
 # Requirements
 See `requirements.txt`
+
+# Thanks
+Mostly based on: https://github.com/jmuia/sbe-sona-watcher-py
