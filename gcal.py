@@ -8,15 +8,15 @@ from oauth2client import tools
 import os
 import datetime
 
-try:
-    import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-except ImportError:
-    flags = None
+# try:
+#     import argparse
+#     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+# except ImportError:
+#     flags = None
 
 
 # Make Class
-class calMaster(object):
+class CalMaster(object):
 
     # Initiate
     def __init__(self):
@@ -71,7 +71,7 @@ class calMaster(object):
 
     def mkevent(self, vals, calid, system):
 
-        event = {'summary': 'Nick - {}'.format(vals['name']),
+        event = {'summary': '{} - {}'.format(system, vals['name']),
                  'description': system,
                  'start': {
                      'dateTime': rfc3339.datetimetostr(vals['start'])[:-1],
@@ -98,10 +98,14 @@ class calMaster(object):
 
     def update_event(self, calid, eid, new_name):
 
+        # Get event
+        curevent = self.service.events().get(calendarId=calid,
+                                             eventId=eid).execute()
+
         # New event dict
         name = 'Nick - {}'.format(new_name)
-        nevent = {'summary': name}
+        curevent['summary'] = name
 
         # Update
         self.service.events().update(calendarId=calid, eventId=eid,
-                                     event=nevent).execute()
+                                            body=curevent).execute()

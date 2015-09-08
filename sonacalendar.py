@@ -3,11 +3,9 @@ import mechanize
 import datetime
 import os
 import yaml
-import gcal
 import urlparse
+import gcal
 
-#gcal = gcal.calMaster()
-#gcal.clearcal('i347pba0mkqe0trvfujsjb92ts@group.calendar.google.com')
 
 # Scrape Sona
 def scrape_slots(username, password, url):
@@ -90,15 +88,15 @@ def main(sonasystem, einfo):
             if cevent:
                 # Select subject name
                 sname = cevent[0]['name'].split(' - ')[1]
-                print 'not make'
 
                 # Check that names match
                 if slot['name'] != sname:
-                    gcal.update_event(einfo['calid'], slot['eid'], slot['name'])
-                    print 'updated'
+                    gcal.update_event(einfo['calid'],
+                                      cevent[0]['eid'],
+                                      slot['name'])
+
             else:
                 gcal.mkevent(slot, einfo['calid'], sonasystem)
-                print 'make'
 
         # Log it
         with open(str(os.getcwd()) + '/log.txt', 'a') as f:
@@ -116,7 +114,7 @@ if __name__ == "__main__":
         config = yaml.load(f)
 
     # Initiate Google Calendar Interface
-    gcal = gcal.calMaster()
+    gcal = gcal.CalMaster()
 
     for key, val in config.iteritems():
         main(key, val)
