@@ -78,7 +78,7 @@ def main(sonasystem, einfo):
 
         # Scrape Calendar
         events = gcal.calevents(einfo['calid'])
-	print events
+
         # Iterate through slots
         for slot in signups:
             # Grab corresponding calendar event
