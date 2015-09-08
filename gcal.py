@@ -8,11 +8,11 @@ from oauth2client import tools
 import os
 import datetime
 
-# try:
-#     import argparse
-#     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-# except ImportError:
-#     flags = None
+try:
+    import argparse
+    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+except ImportError:
+    flags = None
 
 
 # Make Class
@@ -83,7 +83,7 @@ class CalMaster(object):
 
         # Add event
         self.service.events().insert(calendarId=calid,
-                                body=event).execute()
+                                     body=event).execute()
 
     def clearcal(self, calid):
 
@@ -102,10 +102,13 @@ class CalMaster(object):
         curevent = self.service.events().get(calendarId=calid,
                                              eventId=eid).execute()
 
-        # New event dict
-        name = 'Nick - {}'.format(new_name)
+        # Format new name
+        system = curevent['summary'].split(' - ')[0]
+        name = '{} - {}'.format(system, new_name)
+
+        # Update event dict
         curevent['summary'] = name
 
         # Update
         self.service.events().update(calendarId=calid, eventId=eid,
-                                            body=curevent).execute()
+                                     body=curevent).execute()

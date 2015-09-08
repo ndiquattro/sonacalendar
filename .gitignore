@@ -4,6 +4,7 @@ log.txt
 err.txt
 *.json
 vpython/
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
