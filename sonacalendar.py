@@ -99,6 +99,15 @@ def main(sonasystem, einfo):
             else:
                 gcal.mkevent(slot, einfo['calid'], sonasystem)
 
+        # Delete unneeded calendar events
+        for calevent in events:
+            keep = []
+            keep = [slot for slot in signups
+                    if slot['start'] == calevent['start'].replace(tzinfo=None)]
+
+            if not keep:
+                gcal.delevent(einfo['calid'], calevent[0]['eid'])
+
         # Log it
         with open(str(os.getcwd()) + '/log.txt', 'a') as f:
             f.write(str(datetime.datetime.now()) + ",success\n")

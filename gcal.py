@@ -96,6 +96,12 @@ class CalMaster(object):
             self.service.events().delete(calendarId=calid,
                                          eventId=event['id']).execute()
 
+    def delevent(self, calid, eid):
+
+        # Delete event
+        self.service.events().delete(calendarId=calid,
+                                     eventId=eid).execute()
+
     def update_event(self, calid, eid, new_name):
 
         # Get event
