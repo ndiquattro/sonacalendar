@@ -112,7 +112,7 @@ def main(sonasystem, einfo):
         with open(str(os.getcwd()) + '/log.txt', 'a') as f:
             f.write(str(datetime.datetime.now()) + ",success\n")
 
-    except Exception, e:
+    except Exception as e:
         # Log it
         with open(str(os.getcwd()) + '/err.txt', 'a') as f:
             f.write(str(datetime.datetime.now()) + "," + str(e) + "\n")
