@@ -1,4 +1,3 @@
-#!/home/local/AD3/ndiquatt/Vpythons/labscripts/vpython/bin/python
 from bs4 import BeautifulSoup
 import mechanize
 import datetime
@@ -106,13 +105,14 @@ def main(sonasystem, einfo):
                     if slot['start'] == calevent['start'].replace(tzinfo=None)]
 
             if not keep:
-                gcal.delevent(einfo['calid'], calevent[0]['eid'])
+                gcal.delevent(einfo['calid'], calevent['eid'])
 
         # Log it
         with open(str(os.getcwd()) + '/log.txt', 'a') as f:
             f.write(str(datetime.datetime.now()) + ",success\n")
 
-    except Exception, e:
+    except Exception as e:
+
         # Log it
         with open(str(os.getcwd()) + '/err.txt', 'a') as f:
             f.write(str(datetime.datetime.now()) + "," + str(e) + "\n")
