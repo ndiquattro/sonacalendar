@@ -102,7 +102,8 @@ def main(sonasystem, einfo):
         for calevent in events:
             keep = []
             keep = [slot for slot in signups
-                    if slot['start'] == calevent['start'].replace(tzinfo=None)]
+                    if slot['start'] == calevent['start'].replace(tzinfo=None)
+                    and calevent['description'] == sonasystem]
 
             if not keep:
                 gcal.delevent(einfo['calid'], calevent['eid'])

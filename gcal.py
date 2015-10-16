@@ -65,7 +65,8 @@ class CalMaster(object):
             start = rfc3339.parse_datetime(event['start']['dateTime'])
             cevents.append({'name': event['summary'],
                             'start': start,
-                            'eid': event['id']})
+                            'eid': event['id'],
+                            'description': event['description']})
 
         return cevents
 
