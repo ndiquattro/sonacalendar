@@ -99,11 +99,11 @@ def main(sonasystem, einfo):
                 gcal.mkevent(slot, einfo['calid'], sonasystem)
 
         # Delete unneeded calendar events
-        for calevent in events:
+        chkevents = (x for x in events if x['description'] == sonasystem)
+        for calevent in chkevents:
             keep = []
             keep = [slot for slot in signups
-                    if slot['start'] == calevent['start'].replace(tzinfo=None)
-                    and calevent['description'] == sonasystem]
+                    if slot['start'] == calevent['start'].replace(tzinfo=None)]
 
             if not keep:
                 gcal.delevent(einfo['calid'], calevent['eid'])
