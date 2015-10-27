@@ -101,12 +101,13 @@ def main(sonasystem, einfo):
 
         # Delete unneeded calendar events
         chkevents = (x for x in events if x['description'] == sonasystem)
+        now = datetime.datetime.now()
         for calevent in chkevents:
             keep = []
             keep = [slot for slot in signups
                     if slot['start'] == calevent['start'].replace(tzinfo=None)]
 
-            if not keep:
+            if not keep and now < calevent['start'].replace(tzinfo=None):
                 gcal.delevent(einfo['calid'], calevent['eid'])
 
         # Log it

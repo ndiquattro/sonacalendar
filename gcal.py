@@ -64,11 +64,10 @@ class CalMaster(object):
         for event in events:
             start = rfc3339.parse_datetime(event['start']['dateTime'])
 
-            if datetime.datetime.now() < start.replace(tzinfo=None):
-                cevents.append({'name': event['summary'],
-                                'start': start,
-                                'eid': event['id'],
-                                'description': event['description']})
+            cevents.append({'name': event['summary'],
+                            'start': start,
+                            'eid': event['id'],
+                            'description': event['description']})
 
         return cevents
 
